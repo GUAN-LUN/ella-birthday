@@ -188,6 +188,12 @@
     </style>
 </head>
 <body>
+    <!-- 背景音樂 - 自動播放 -->
+    <audio autoplay loop id="bgMusic">
+        <source src="background-music.mp3" type="audio/mpeg">
+        您的瀏覽器不支援音訊播放。
+    </audio>
+
     <div class="container">
         <div class="header">
             <div class="slideshow-container">
@@ -199,6 +205,18 @@
                 </div>
                 <div class="slide">
                     <img src="3.JPG" alt="合照3">
+                </div>
+                <div class="slide">
+                    <img src="4.JPG" alt="合照4">
+                </div>
+                <div class="slide">
+                    <img src="5.JPG" alt="合照5">
+                </div>
+                <div class="slide">
+                    <img src="6.JPG" alt="合照6">
+                </div>
+                <div class="slide">
+                    <img src="7.JPG" alt="合照7">
                 </div>
             </div>
             <div class="header-content">
@@ -229,28 +247,33 @@
             </div>
 
             <div class="message-section">
-                <div class="message-title"> 關於25歲的生日祝福 </div>
+                <div class="message-title"> 來自機長的祝福 </div>
                 <div class="message-content">
                     <p>我的愛情寶貝：</p>
 
                     <p>25歲生日快樂！</p>
 
-                    <p>在這特別的日子裡，我想告訴妳，<br>妳是我生命中最美好的存在。</p>
+                    <p>在這特別的日子裡，我想告訴妳，
+                        <br>妳是我生命中最美好的存在。
+                    </p>
 
-                    <p>每一天和妳在一起，<br>都像是搭乘最幸福的航班，<br>能與你一起航向未來是最幸福的事。</p>
+                    <p>每一天和妳在一起，
+                        <br>都像是搭乘最幸福的航班，
+                        <br>能與你一起航向未來是最幸福的事。
+                    </p>
 
-                    <p>今年的禮物是為了我們的日本行做準備，
-                    <br>還記得妳在準備考試的那段時間，
+                    <p>還記得妳在準備考試的那段時間，
                     <br>總是跟我說想一起出國好多次，
                     <br>我也答應過妳，
                     <br>只要你考到工作，
-                    <br>一定跟你一起出去玩，
-                    <br>為了獎勵妳的努力，
-                    <br>這次我要送妳的禮物是一台吹風機。
-                    <br>當初在挑選時，
-                    <br>我發現這台追覓吹風機是國際版的，
-                    <br>不論去哪裡旅行都能帶著它，
-                    <br>最後附上一張「機票兌換券」，
+                    <br>一定會帶你出去玩，
+                    <br>真的很開心你找到了一份完美工作，
+                    <br>今年的禮物是為了實現我對你的承諾，
+                    <br>也象徵著未來我會一個個兌現對妳的其他承諾。
+                    <br>附上一張「機票兌換券」以及吹風機，
+                    <br>希望未來的旅行你都能帶著它，
+                    <br>也帶著屬於我們一輩子的牽絆。
+                    <br>至於此兌換券，    
                     <br>有效期限為今年年底，
                     <br>請妳務必盡快兌換，
                     <br>因為我已經迫不及待想再次和妳一起啟程。</p>
@@ -280,10 +303,24 @@
         }
         
         showSlides();
+
+        // 強制播放音樂
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.7; // 設定音量為 70%
+        
+        // 立即嘗試播放
+        bgMusic.play().catch(e => {
+            // 如果自動播放失敗，使用任何互動來觸發
+            const playOnInteraction = () => {
+                bgMusic.play();
+                document.removeEventListener('click', playOnInteraction);
+                document.removeEventListener('touchstart', playOnInteraction);
+                document.removeEventListener('keydown', playOnInteraction);
+            };
+            document.addEventListener('click', playOnInteraction);
+            document.addEventListener('touchstart', playOnInteraction);
+            document.addEventListener('keydown', playOnInteraction);
+        });
     </script>
 </body>
-
 </html>
-
-
-
